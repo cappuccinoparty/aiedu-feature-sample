@@ -1,0 +1,335 @@
+<h2 style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Interactive prototype of the 5-minute builds flow with a gallery, preview page with sample tool demo, a build page with customizable dropdowns and an AI picker, and a completion screen</h2>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+.vc{font-family:'Poppins',ui-sans-serif,sans-serif;color:#222244;}
+.pill{border-radius:999px;font-weight:700;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;}
+.vc i{line-height:1;}
+.vc button{cursor:pointer;}
+.blank{background:#DFF9F8;border:none;border-bottom:2px solid #02D9D2;font-weight:700;color:#222244;padding:2px 6px;border-radius:6px 6px 0 0;font-family:inherit;font-size:12.5px;}
+.chip{border:1.5px solid #222244;background:#ffffff;color:#222244;border-radius:999px;padding:5px 13px;font-size:11px;font-weight:600;font-family:inherit;}
+.chip.on{background:#222244;color:#ffffff;font-weight:700;}
+.ai-opt{flex:1;border:2px solid #222244;border-radius:12px;background:#ffffff;color:#222244;font-family:inherit;font-weight:700;font-size:12.5px;padding:10px 0;}
+.ai-opt.on{background:#02D9D2;}
+input.blank{outline:none;}
+</style>
+
+<div style="background:var(--surface-1);border-radius:12px;padding:14px;">
+
+<div class="vc" style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;">
+<button class="pnav" data-goto="0" style="background:#ffffff;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:11px;padding:4px 12px;">1 &middot; Gallery</button>
+<button class="pnav" data-goto="1" style="background:#ffffff;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:11px;padding:4px 12px;">2 &middot; Preview</button>
+<button class="pnav" data-goto="2" style="background:#ffffff;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:11px;padding:4px 12px;">3 &middot; Build</button>
+<button class="pnav" data-goto="3" style="background:#ffffff;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:11px;padding:4px 12px;">4 &middot; Done</button>
+</div>
+
+<div class="vc screen" style="background:#ffffff;border-radius:10px;overflow:hidden;border:0.5px solid var(--border);">
+<div style="background:#222244;display:flex;align-items:center;gap:7px;padding:10px 16px;">
+<div style="width:26px;height:26px;border-radius:50%;background:#ffffff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#222244;">A</div>
+<span style="color:#02D9D2;font-weight:700;font-size:15px;">vibecoding</span><span style="color:#D4D3D9;font-size:12px;">.aiedu.org</span>
+<span class="pill" style="margin-left:auto;background:#ffffff;color:#222244;padding:5px 13px;font-size:11px;">Submit project</span>
+</div>
+<div style="background:#EAEAEA;padding:20px 20px 18px;border-bottom:1px solid #222244;">
+<span class="pill" style="background:#02D9D2;color:#222244;padding:3px 11px;font-size:11px;">New</span>
+<div style="font-size:26px;font-weight:800;letter-spacing:-0.5px;margin-top:8px;">5-minute builds</div>
+<div style="font-size:13px;color:#5F5E6E;margin-top:4px;">Real tools for real teacher tasks. Five minutes. That's it.</div>
+</div>
+<div style="display:flex;gap:7px;padding:13px 20px 2px;flex-wrap:wrap;">
+<button class="chip on" data-cat="all">All 4</button>
+<button class="chip" data-cat="feedback">Feedback</button>
+<button class="chip" data-cat="quizzes">Quizzes</button>
+<button class="chip" data-cat="admin">Admin</button>
+<button class="chip" data-cat="lesson">Lesson planning</button>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:14px 20px 20px;">
+
+<div class="bcard" data-cat="feedback" style="border:2px solid #222244;border-radius:14px;overflow:hidden;background:#ffffff;display:flex;flex-direction:column;">
+<div style="background:#222244;display:flex;align-items:center;justify-content:flex-end;padding:6px 12px;"><span class="pill" style="background:#02D9D2;color:#222244;padding:2px 9px;font-size:11px;">5 min</span></div>
+<div style="padding:12px 13px;display:flex;flex-direction:column;gap:8px;flex:1;">
+<div style="font-weight:700;font-size:13.5px;line-height:1.35;">A feedback generator that drafts comments in your voice</div>
+<div style="font-size:11px;color:#8D8C9E;">Replaces: an evening of comment writing</div>
+<div style="display:flex;gap:5px;flex-wrap:wrap;">
+<span class="pill" style="background:#02D9D2;color:#222244;padding:2px 9px;font-size:11px;"><i class="ti ti-star" aria-hidden="true" style="font-size:11px;"></i>aiEDU pick</span>
+<span class="pill" style="border:1.5px solid #222244;padding:2px 9px;font-size:11px;font-weight:600;">Feedback</span>
+</div>
+<button data-goto="1" style="background:#02D9D2;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:12px;padding:7px 0;width:100%;margin-top:auto;">Build this yourself</button>
+</div>
+</div>
+
+<div class="bcard" data-cat="quizzes" style="border:2px solid #222244;border-radius:14px;overflow:hidden;background:#ffffff;display:flex;flex-direction:column;">
+<div style="background:#222244;display:flex;align-items:center;justify-content:flex-end;padding:6px 12px;"><span class="pill" style="background:#02D9D2;color:#222244;padding:2px 9px;font-size:11px;">4 min</span></div>
+<div style="padding:12px 13px;display:flex;flex-direction:column;gap:8px;flex:1;">
+<div style="font-weight:700;font-size:13.5px;line-height:1.35;">A quiz maker that writes 3 difficulty levels at once</div>
+<div style="font-size:11px;color:#8D8C9E;">Replaces: building three versions by hand</div>
+<div style="display:flex;gap:5px;flex-wrap:wrap;">
+<span class="pill" style="border:1.5px solid #222244;padding:2px 9px;font-size:11px;font-weight:600;">Quizzes</span>
+<span class="pill" style="background:#02D9D2;color:#222244;padding:2px 9px;font-size:11px;">Beginner</span>
+</div>
+<button style="background:#02D9D2;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:12px;padding:7px 0;width:100%;margin-top:auto;cursor:default;">Build this yourself</button>
+</div>
+</div>
+
+<div class="bcard" data-cat="admin" style="border:2px solid #222244;border-radius:14px;overflow:hidden;background:#ffffff;display:flex;flex-direction:column;">
+<div style="background:#222244;display:flex;align-items:center;justify-content:flex-end;padding:6px 12px;"><span class="pill" style="background:#02D9D2;color:#222244;padding:2px 9px;font-size:11px;">5 min</span></div>
+<div style="padding:12px 13px;display:flex;flex-direction:column;gap:8px;flex:1;">
+<div style="font-weight:700;font-size:13.5px;line-height:1.35;">A parent email drafter for tricky conversations</div>
+<div style="font-size:11px;color:#8D8C9E;">Replaces: agonizing over the wording</div>
+<div style="display:flex;gap:5px;flex-wrap:wrap;">
+<span class="pill" style="border:1.5px solid #222244;padding:2px 9px;font-size:11px;font-weight:600;">Admin</span>
+<span class="pill" style="background:#02D9D2;color:#222244;padding:2px 9px;font-size:11px;">Beginner</span>
+</div>
+<button style="background:#02D9D2;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:12px;padding:7px 0;width:100%;margin-top:auto;cursor:default;">Build this yourself</button>
+</div>
+</div>
+
+<div class="bcard" data-cat="lesson" style="border:2px solid #222244;border-radius:14px;overflow:hidden;background:#ffffff;display:flex;flex-direction:column;">
+<div style="background:#222244;display:flex;align-items:center;justify-content:flex-end;padding:6px 12px;"><span class="pill" style="background:#02D9D2;color:#222244;padding:2px 9px;font-size:11px;">5 min</span></div>
+<div style="padding:12px 13px;display:flex;flex-direction:column;gap:8px;flex:1;">
+<div style="font-weight:700;font-size:13.5px;line-height:1.35;">A review game generator for any topic you're teaching</div>
+<div style="font-size:11px;color:#8D8C9E;">Replaces: another round of generic trivia</div>
+<div style="display:flex;gap:5px;flex-wrap:wrap;">
+<span class="pill" style="border:1.5px solid #222244;padding:2px 9px;font-size:11px;font-weight:600;">Lesson planning</span>
+</div>
+<button style="background:#02D9D2;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:12px;padding:7px 0;width:100%;margin-top:auto;cursor:default;">Build this yourself</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="vc screen" style="background:#ffffff;border-radius:10px;overflow:hidden;border:0.5px solid var(--border);">
+<div style="background:#222244;display:flex;align-items:center;gap:7px;padding:10px 16px;">
+<div style="width:26px;height:26px;border-radius:50%;background:#ffffff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#222244;">A</div>
+<span style="color:#02D9D2;font-weight:700;font-size:15px;">vibecoding</span><span style="color:#D4D3D9;font-size:12px;">.aiedu.org</span>
+</div>
+<div style="padding:18px 22px 22px;">
+<button data-goto="0" style="background:#ffffff;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:600;font-family:inherit;font-size:11.5px;padding:4px 12px;"><i class="ti ti-arrow-left" aria-hidden="true" style="font-size:12px;"></i> All 5-minute builds</button>
+<div style="font-size:21px;font-weight:800;line-height:1.25;margin-top:12px;">A feedback generator that drafts comments in your voice</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;">
+<span class="pill" style="background:#02D9D2;color:#222244;padding:3px 11px;font-size:11px;"><i class="ti ti-circle-check" aria-hidden="true" style="font-size:12px;"></i>Verified 5 min</span>
+<span class="pill" style="background:#02D9D2;color:#222244;padding:3px 11px;font-size:11px;">Beginner</span>
+</div>
+
+<div style="font-size:13px;font-weight:700;margin-top:18px;">What you'll walk away with</div>
+<div style="border:2px solid #222244;border-radius:14px;padding:14px 16px;margin-top:8px;">
+<div style="font-size:12.5px;line-height:1.6;color:#44445E;">"Maya &mdash; your thesis in paragraph one is genuinely sharp. Right now the evidence in your body paragraphs doesn't point back to it; pick your two strongest quotes and cut the rest. Next step: rewrite paragraph 3's opening line so it names your argument directly."</div>
+<div style="font-size:11px;color:#8D8C9E;margin-top:10px;display:flex;align-items:center;gap:5px;"><i class="ti ti-wand" aria-hidden="true" style="font-size:13px;color:#222244;"></i>Generated in an "encouraging but direct" style &mdash; yours will sound like you</div>
+</div>
+
+<div style="font-size:13px;font-weight:700;margin-top:18px;">How you'll build it</div>
+<div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+<div style="display:flex;align-items:center;gap:10px;"><span style="width:22px;height:22px;border-radius:50%;background:#222244;color:#ffffff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</span><span style="font-size:12.5px;">Make the prompt yours &mdash; edit the base prompt with your subject, grade, and feedback style</span><span class="pill" style="margin-left:auto;border:1.5px solid #222244;padding:2px 9px;font-size:11px;font-weight:600;">2 min</span></div>
+<div style="display:flex;align-items:center;gap:10px;"><span style="width:22px;height:22px;border-radius:50%;background:#222244;color:#ffffff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</span><span style="font-size:12.5px;">Shape how it works &mdash; set the output structure: length, format, what it always includes</span><span class="pill" style="margin-left:auto;border:1.5px solid #222244;padding:2px 9px;font-size:11px;font-weight:600;">2 min</span></div>
+<div style="display:flex;align-items:center;gap:10px;"><span style="width:22px;height:22px;border-radius:50%;background:#222244;color:#ffffff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</span><span style="font-size:12.5px;">Run it and test &mdash; paste sample student work, check it sounds like you, tweak</span><span class="pill" style="margin-left:auto;border:1.5px solid #222244;padding:2px 9px;font-size:11px;font-weight:600;">1 min</span></div>
+</div>
+
+<div style="background:#EAEAEA;border-radius:14px;padding:12px 16px;margin-top:18px;display:flex;align-items:center;gap:8px;">
+<i class="ti ti-users" aria-hidden="true" style="font-size:15px;"></i><span style="font-size:12px;font-weight:700;">412 teachers built this</span><span style="font-size:11.5px;color:#5F5E6E;">&middot; most popular first build</span>
+</div>
+
+<div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;">
+<button data-goto="2" style="background:#02D9D2;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:13px;padding:10px 22px;">Build this yourself</button>
+<button id="try-btn" style="background:#ffffff;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:13px;padding:10px 22px;"><i class="ti ti-player-play" aria-hidden="true" style="font-size:13px;"></i> Try it first</button>
+</div>
+
+<div id="demo-panel" style="border:2px solid #222244;border-radius:14px;margin-top:14px;overflow:hidden;">
+<div style="background:#222244;color:#ffffff;padding:8px 14px;font-size:11.5px;font-weight:600;display:flex;align-items:center;gap:6px;"><i class="ti ti-flask" aria-hidden="true" style="font-size:13px;"></i>Sample tool with generic settings applied</div>
+<div style="padding:14px 16px;">
+<div style="font-size:11.5px;font-weight:700;color:#5F5E6E;">Sample student work</div>
+<div style="background:#F5F5F7;border-radius:10px;padding:11px 13px;margin-top:6px;font-size:12px;line-height:1.55;color:#44445E;">"The Great Gatsby shows that the american dream is fake. Gatsby has money but he is not happy. This is shown many times in the book and proves that money does not equal happiness."</div>
+<button id="run-demo" style="background:#02D9D2;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:12px;padding:8px 20px;margin-top:12px;"><i class="ti ti-bolt" aria-hidden="true" style="font-size:12px;"></i> Run the tool</button>
+<div id="demo-out" style="margin-top:12px;">
+<div style="font-size:11.5px;font-weight:700;color:#5F5E6E;">Generated feedback</div>
+<div style="border:1.5px solid #02D9D2;background:#EFFCFB;border-radius:10px;padding:11px 13px;margin-top:6px;font-size:12px;line-height:1.6;color:#085041;">"Jordan &mdash; you've landed on a real argument: wealth without happiness. Right now it stays at the surface; pick one scene, like the shirts or the green light, and show how it proves the dream fails. Next step: replace 'this is shown many times' with your single strongest example."</div>
+<div style="font-size:12px;margin-top:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+<span style="color:#5F5E6E;">That was the generic version. Build yours &mdash; it'll sound like you.</span>
+<button data-goto="2" style="background:#02D9D2;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:11.5px;padding:5px 14px;">Build yours</button>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="vc screen" style="background:#ffffff;border-radius:10px;overflow:hidden;border:0.5px solid var(--border);">
+<div style="background:#222244;display:flex;align-items:center;gap:7px;padding:10px 16px;">
+<div style="width:26px;height:26px;border-radius:50%;background:#ffffff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#222244;">A</div>
+<span style="color:#02D9D2;font-weight:700;font-size:14px;">vibecoding</span>
+<span style="color:#D4D3D9;font-size:12px;">Building: feedback comment generator</span>
+</div>
+<div style="padding:20px 22px 22px;">
+<div style="display:flex;align-items:center;">
+<div style="display:flex;align-items:center;gap:7px;"><span style="width:24px;height:24px;border-radius:50%;background:#02D9D2;border:2px solid #222244;display:flex;align-items:center;justify-content:center;"><i class="ti ti-check" aria-hidden="true" style="font-size:13px;color:#222244;"></i></span><span style="font-size:11.5px;font-weight:600;color:#8D8C9E;">Your context</span></div>
+<div style="flex:1;height:2px;background:#222244;margin:0 10px;"></div>
+<div style="display:flex;align-items:center;gap:7px;"><span style="width:24px;height:24px;border-radius:50%;background:#222244;color:#ffffff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</span><span style="font-size:11.5px;font-weight:700;">Fill in the blanks</span></div>
+<div style="flex:1;height:2px;background:#D4D3D9;margin:0 10px;"></div>
+<div style="display:flex;align-items:center;gap:7px;"><span style="width:24px;height:24px;border-radius:50%;background:#ffffff;border:2px solid #D4D3D9;color:#8D8C9E;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">3</span><span style="font-size:11.5px;font-weight:600;color:#8D8C9E;">Run and copy</span></div>
+</div>
+
+<div style="font-size:13px;font-weight:700;margin-top:20px;">Your prompt &mdash; the highlighted parts are yours, the rest is already done</div>
+<div style="border:2px solid #222244;border-radius:14px;padding:16px 18px;margin-top:10px;">
+<div style="font-size:13px;line-height:2.05;color:#44445E;">You're helping a <select class="blank" id="sel-grade"><option>Elementary school</option><option>Middle school</option><option selected>High school</option><option>Other (type your own)</option></select> <input class="blank" id="inp-grade" placeholder="type your own" style="width:110px;"> <select class="blank" id="sel-subject"><option>English</option><option>Math</option><option>Science</option><option>History</option><option>Other (type your own)</option></select> <input class="blank" id="inp-subject" placeholder="type your own" style="width:110px;"> teacher build a reusable feedback tool. My feedback style is <select class="blank" id="sel-style"><option>encouraging but direct</option><option>warm and detailed</option><option>brief and specific</option><option>Other (type your own)</option></select> <input class="blank" id="inp-style" placeholder="type your own" style="width:130px;">.</div>
+<div style="font-size:13px;line-height:2.05;color:#44445E;margin-top:10px;">Before we start, ask me one question at a time to set up how my feedback should work: how long each comment should be, the format I prefer, and what every comment must always include. Then confirm my setup back to me in one line.</div>
+<div style="font-size:13px;line-height:2.05;color:#44445E;margin-top:10px;">After setup, whenever I paste a piece of student work, write a comment using my settings and my voice &mdash; no generic praise.</div>
+</div>
+
+<div style="border:1.5px solid #02D9D2;background:#EFFCFB;border-radius:12px;padding:11px 14px;margin-top:12px;display:flex;gap:9px;align-items:flex-start;">
+<i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;color:#0F6E56;margin-top:2px;"></i>
+<span style="font-size:12px;line-height:1.55;color:#085041;">Telling the AI to interview you first is a prompting method that gets the AI to gather your requirements instead of guessing them.</span>
+</div>
+
+<div style="font-size:13px;font-weight:700;margin-top:18px;">Choose your AI</div>
+<div style="display:flex;gap:10px;margin-top:8px;">
+<button class="ai-opt on" data-ai="claude">Claude</button>
+<button class="ai-opt" data-ai="chatgpt">ChatGPT</button>
+<button class="ai-opt" data-ai="aistudio">AI Studio</button>
+</div>
+
+<div style="display:flex;align-items:center;gap:10px;margin-top:18px;flex-wrap:wrap;">
+<button id="run-prompt" style="background:#02D9D2;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:13px;padding:10px 24px;">Run my prompt</button>
+<button data-goto="3" style="background:#ffffff;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:13px;padding:10px 24px;">Mark as done</button>
+</div>
+<div id="run-note" style="font-size:11.5px;color:#8D8C9E;margin-top:10px;">Opens Claude in a new tab with your prompt &middot; the AI will ask you 3 setup questions</div>
+</div>
+</div>
+
+<div class="vc screen" style="background:#ffffff;border-radius:10px;overflow:hidden;border:0.5px solid var(--border);">
+<div style="background:#222244;display:flex;align-items:center;gap:7px;padding:10px 16px;">
+<div style="width:26px;height:26px;border-radius:50%;background:#ffffff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#222244;">A</div>
+<span style="color:#02D9D2;font-weight:700;font-size:15px;">vibecoding</span><span style="color:#D4D3D9;font-size:12px;">.aiedu.org</span>
+</div>
+<div style="padding:26px 22px 22px;text-align:center;">
+<div style="width:56px;height:56px;border-radius:50%;background:#02D9D2;border:2px solid #222244;display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-award" aria-hidden="true" style="font-size:28px;color:#222244;"></i></div>
+<div style="font-size:22px;font-weight:800;margin-top:12px;">You just built your first AI tool</div>
+<div style="font-size:13px;color:#5F5E6E;margin-top:5px;" id="done-sub">A working High school English feedback generator, in your voice, ready for Monday.</div>
+<div style="margin-top:12px;"><span class="pill" style="background:#F5511A;color:#ffffff;padding:4px 14px;font-size:12px;"><i class="ti ti-bolt" aria-hidden="true" style="font-size:13px;"></i>+50 XP earned</span></div>
+<div style="border:2px solid #222244;border-radius:14px;padding:13px 16px;margin-top:18px;display:flex;align-items:center;gap:10px;text-align:left;">
+<i class="ti ti-tool" aria-hidden="true" style="font-size:20px;flex-shrink:0;"></i>
+<div style="flex:1;min-width:0;">
+<div style="font-weight:700;font-size:13px;">Feedback comment generator</div>
+<div style="font-size:11px;color:#8D8C9E;">Your prompt</div>
+</div>
+<button style="background:#ffffff;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:11.5px;padding:6px 14px;"><i class="ti ti-copy" aria-hidden="true" style="font-size:12px;"></i> Copy</button>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px;">
+<div style="border:2px solid #222244;border-radius:14px;padding:14px 12px;display:flex;flex-direction:column;gap:7px;text-align:left;">
+<i class="ti ti-bookmark" aria-hidden="true" style="font-size:19px;"></i>
+<div style="font-weight:700;font-size:12.5px;">Save it</div>
+<div style="font-size:11px;color:#8D8C9E;line-height:1.45;flex:1;">Create a free account to keep this tool.</div>
+<button style="background:#ffffff;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:11.5px;padding:6px 0;width:100%;cursor:default;">Sign up</button>
+</div>
+<div style="border:2px solid #222244;border-radius:14px;padding:14px 12px;display:flex;flex-direction:column;gap:7px;text-align:left;">
+<i class="ti ti-share" aria-hidden="true" style="font-size:19px;"></i>
+<div style="font-weight:700;font-size:12.5px;">Share it</div>
+<div style="font-size:11px;color:#8D8C9E;line-height:1.45;flex:1;">Post it to the showcase community.</div>
+<button style="background:#ffffff;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:11.5px;padding:6px 0;width:100%;cursor:default;">Share to showcase</button>
+</div>
+<div style="border:2px solid #222244;border-radius:14px;padding:14px 12px;display:flex;flex-direction:column;gap:7px;text-align:left;background:#EFFCFB;">
+<i class="ti ti-rocket" aria-hidden="true" style="font-size:19px;"></i>
+<div style="font-weight:700;font-size:12.5px;">Keep going</div>
+<div style="font-size:11px;color:#5F5E6E;line-height:1.45;flex:1;">The quiz maker takes 5 minutes too.</div>
+<button data-goto="0" style="background:#02D9D2;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:11.5px;padding:6px 0;width:100%;">Start next build</button>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<script>
+(function(){
+var screens=Array.prototype.slice.call(document.querySelectorAll('.screen'));
+var navs=Array.prototype.slice.call(document.querySelectorAll('.pnav'));
+function go(n){
+screens.forEach(function(s,i){s.style.display=i===n?'':'none';});
+navs.forEach(function(b,i){
+if(i===n){b.style.background='#222244';b.style.color='#ffffff';}
+else{b.style.background='#ffffff';b.style.color='#222244';}
+});
+}
+document.querySelectorAll('[data-goto]').forEach(function(el){
+el.addEventListener('click',function(){go(parseInt(el.getAttribute('data-goto'),10));});
+});
+var chips=Array.prototype.slice.call(document.querySelectorAll('.chip'));
+chips.forEach(function(ch){
+ch.addEventListener('click',function(){
+chips.forEach(function(c){c.classList.remove('on');});
+ch.classList.add('on');
+var cat=ch.getAttribute('data-cat');
+document.querySelectorAll('.bcard').forEach(function(cd){
+cd.style.display=(cat==='all'||cd.getAttribute('data-cat')===cat)?'':'none';
+});
+});
+});
+var panel=document.getElementById('demo-panel');
+var out=document.getElementById('demo-out');
+var tryBtn=document.getElementById('try-btn');
+var runBtn=document.getElementById('run-demo');
+panel.style.display='none';
+out.style.display='none';
+tryBtn.addEventListener('click',function(){
+var open=panel.style.display==='none';
+panel.style.display=open?'':'none';
+tryBtn.innerHTML=open?'<i class="ti ti-x" aria-hidden="true" style="font-size:13px;"></i> Close sample':'<i class="ti ti-player-play" aria-hidden="true" style="font-size:13px;"></i> Try it first';
+});
+runBtn.addEventListener('click',function(){
+runBtn.innerHTML='<i class="ti ti-loader" aria-hidden="true" style="font-size:12px;"></i> Generating...';
+setTimeout(function(){
+out.style.display='';
+runBtn.innerHTML='<i class="ti ti-refresh" aria-hidden="true" style="font-size:12px;"></i> Run again';
+},800);
+});
+function wireOther(sel,inp){
+inp.style.display='none';
+sel.addEventListener('change',function(){
+inp.style.display=sel.value.indexOf('Other')===0?'':'none';
+if(sel.value.indexOf('Other')===0){inp.focus();}
+});
+}
+var selGrade=document.getElementById('sel-grade'),inpGrade=document.getElementById('inp-grade');
+var selSubject=document.getElementById('sel-subject'),inpSubject=document.getElementById('inp-subject');
+var selStyle=document.getElementById('sel-style'),inpStyle=document.getElementById('inp-style');
+wireOther(selGrade,inpGrade);
+wireOther(selSubject,inpSubject);
+wireOther(selStyle,inpStyle);
+function getVal(sel,inp,fallback){
+if(sel.value.indexOf('Other')===0){return inp.value.trim()||fallback;}
+return sel.value;
+}
+var sub=document.getElementById('done-sub');
+function upd(){
+sub.textContent='A working '+getVal(selGrade,inpGrade,'')+' '+getVal(selSubject,inpSubject,'')+' feedback generator, in your voice, ready for Monday.';
+}
+[selGrade,selSubject,selStyle].forEach(function(s){s.addEventListener('change',upd);});
+[inpGrade,inpSubject,inpStyle].forEach(function(i){i.addEventListener('input',upd);});
+var selectedAi='claude';
+var aiOpts=Array.prototype.slice.call(document.querySelectorAll('.ai-opt'));
+var runNote=document.getElementById('run-note');
+function updNote(){
+if(selectedAi==='claude'){runNote.textContent='Opens Claude in a new tab with your prompt \u00b7 the AI will ask you 3 setup questions';}
+else if(selectedAi==='chatgpt'){runNote.textContent='Opens ChatGPT in a new tab with your prompt \u00b7 the AI will ask you 3 setup questions';}
+else{runNote.textContent='Opens AI Studio in a new tab \u00b7 your prompt is copied to your clipboard, just paste it to start';}
+}
+aiOpts.forEach(function(opt){
+opt.addEventListener('click',function(){
+aiOpts.forEach(function(o){o.classList.remove('on');});
+opt.classList.add('on');
+selectedAi=opt.getAttribute('data-ai');
+updNote();
+});
+});
+function buildPrompt(){
+return "You're helping a "+getVal(selGrade,inpGrade,'school')+" "+getVal(selSubject,inpSubject,'classroom')+" teacher build a reusable feedback tool. My feedback style is "+getVal(selStyle,inpStyle,'my own')+". Before we start, ask me one question at a time to set up how my feedback should work: how long each comment should be, the format I prefer, and what every comment must always include. Then confirm my setup back to me in one line. After setup, whenever I paste a piece of student work, write a comment using my settings and my voice - no generic praise.";
+}
+document.getElementById('run-prompt').addEventListener('click',function(){
+var p=buildPrompt();
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p).catch(function(){});}
+var url;
+if(selectedAi==='claude'){url='https://claude.ai/new?q='+encodeURIComponent(p);}
+else if(selectedAi==='chatgpt'){url='https://chatgpt.com/?q='+encodeURIComponent(p);}
+else{url='https://aistudio.google.com/';}
+window.open(url,'_blank');
+});
+go(0);
+})();
+</script>
