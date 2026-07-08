@@ -254,11 +254,11 @@ var out=document.getElementById('demo-out');
 var runBtn=document.getElementById('run-demo');
 panel.style.display='none';
 out.style.display='none';
-tryBtn.addEventListener('click',function(){
-var open=panel.style.display==='none';
-panel.style.display=open?'':'none';
-tryBtn.innerHTML=open?'<i class="ti ti-x" aria-hidden="true" style="font-size:13px;"></i> Close sample':'<i class="ti ti-player-play" aria-hidden="true" style="font-size:13px;"></i> Try it first';
-});
+// tryBtn.addEventListener('click',function(){
+// var open=panel.style.display==='none';
+// panel.style.display=open?'':'none';
+// tryBtn.innerHTML=open?'<i class="ti ti-x" aria-hidden="true" style="font-size:13px;"></i> Close sample':'<i class="ti ti-player-play" aria-hidden="true" style="font-size:13px;"></i> Try it first';
+// });
 runBtn.addEventListener('click',function(){
 runBtn.innerHTML='<i class="ti ti-loader" aria-hidden="true" style="font-size:12px;"></i> Generating...';
 setTimeout(function(){
