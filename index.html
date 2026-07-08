@@ -1,4 +1,4 @@
-<h2 style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Interactive prototype of the 5-minute builds flow with a gallery, preview page with sample tool demo, a build page with transforming dropdowns and an AI picker, and a completion screen</h2>
+<h2 style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Interactive prototype of the 5-minute builds flow with plain navy header bars, a gallery, preview page with sample tool demo, a build page with transforming dropdowns and an AI picker, and a completion screen</h2>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 .vc{font-family:'Poppins',ui-sans-serif,sans-serif;color:#222244;}
@@ -13,26 +13,15 @@
 .chip.on{background:#222244;color:#ffffff;font-weight:700;}
 .ai-opt{flex:1;border:2px solid #222244;border-radius:12px;background:#ffffff;color:#222244;font-family:inherit;font-weight:700;font-size:12.5px;padding:10px 0;}
 .ai-opt.on{background:#02D9D2;}
+.navbar{background:#222244;height:34px;}
 </style>
 
 <div style="background:var(--surface-1);border-radius:12px;padding:14px;">
 
-<div class="vc" style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;">
-<button class="pnav" data-goto="0" style="background:#ffffff;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:11px;padding:4px 12px;">1 &middot; Gallery</button>
-<button class="pnav" data-goto="1" style="background:#ffffff;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:11px;padding:4px 12px;">2 &middot; Preview</button>
-<button class="pnav" data-goto="2" style="background:#ffffff;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:11px;padding:4px 12px;">3 &middot; Build</button>
-<button class="pnav" data-goto="3" style="background:#ffffff;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:11px;padding:4px 12px;">4 &middot; Done</button>
-</div>
-
 <div class="vc screen" style="background:#ffffff;border-radius:10px;overflow:hidden;border:0.5px solid var(--border);">
-<div style="background:#222244;display:flex;align-items:center;gap:7px;padding:10px 16px;">
-<div style="width:26px;height:26px;border-radius:50%;background:#ffffff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#222244;">A</div>
-<span style="color:#02D9D2;font-weight:700;font-size:15px;">vibecoding</span><span style="color:#D4D3D9;font-size:12px;">.aiedu.org</span>
-<span class="pill" style="margin-left:auto;background:#ffffff;color:#222244;padding:5px 13px;font-size:11px;">Submit project</span>
-</div>
+<div class="navbar"></div>
 <div style="background:#EAEAEA;padding:20px 20px 18px;border-bottom:1px solid #222244;">
-<span class="pill" style="background:#02D9D2;color:#222244;padding:3px 11px;font-size:11px;">New</span>
-<div style="font-size:26px;font-weight:800;letter-spacing:-0.5px;margin-top:8px;">5-minute builds</div>
+<div style="font-size:26px;font-weight:800;letter-spacing:-0.5px;">5-minute builds</div>
 <div style="font-size:13px;color:#5F5E6E;margin-top:4px;">Real tools for real teacher tasks. Five minutes. That's it.</div>
 </div>
 <div style="display:flex;gap:7px;padding:13px 20px 2px;flex-wrap:wrap;">
@@ -64,7 +53,6 @@
 <div style="font-size:11px;color:#8D8C9E;">Replaces: building three versions by hand</div>
 <div style="display:flex;gap:5px;flex-wrap:wrap;">
 <span class="pill" style="border:1.5px solid #222244;padding:2px 9px;font-size:11px;font-weight:600;">Quizzes</span>
-<span class="pill" style="background:#02D9D2;color:#222244;padding:2px 9px;font-size:11px;">Beginner</span>
 </div>
 <button style="background:#02D9D2;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:12px;padding:7px 0;width:100%;margin-top:auto;cursor:default;">Build this yourself</button>
 </div>
@@ -77,7 +65,6 @@
 <div style="font-size:11px;color:#8D8C9E;">Replaces: agonizing over the wording</div>
 <div style="display:flex;gap:5px;flex-wrap:wrap;">
 <span class="pill" style="border:1.5px solid #222244;padding:2px 9px;font-size:11px;font-weight:600;">Admin</span>
-<span class="pill" style="background:#02D9D2;color:#222244;padding:2px 9px;font-size:11px;">Beginner</span>
 </div>
 <button style="background:#02D9D2;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:700;font-family:inherit;font-size:12px;padding:7px 0;width:100%;margin-top:auto;cursor:default;">Build this yourself</button>
 </div>
@@ -99,16 +86,12 @@
 </div>
 
 <div class="vc screen" style="background:#ffffff;border-radius:10px;overflow:hidden;border:0.5px solid var(--border);">
-<div style="background:#222244;display:flex;align-items:center;gap:7px;padding:10px 16px;">
-<div style="width:26px;height:26px;border-radius:50%;background:#ffffff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#222244;">A</div>
-<span style="color:#02D9D2;font-weight:700;font-size:15px;">vibecoding</span><span style="color:#D4D3D9;font-size:12px;">.aiedu.org</span>
-</div>
+<div class="navbar"></div>
 <div style="padding:18px 22px 22px;">
 <button data-goto="0" style="background:#ffffff;color:#222244;border:2px solid #222244;border-radius:999px;font-weight:600;font-family:inherit;font-size:11.5px;padding:4px 12px;"><i class="ti ti-arrow-left" aria-hidden="true" style="font-size:12px;"></i> All 5-minute builds</button>
 <div style="font-size:21px;font-weight:800;line-height:1.25;margin-top:12px;">A feedback generator that drafts comments in your voice</div>
 <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;">
 <span class="pill" style="background:#02D9D2;color:#222244;padding:3px 11px;font-size:11px;"><i class="ti ti-circle-check" aria-hidden="true" style="font-size:12px;"></i>Verified 5 min</span>
-<span class="pill" style="background:#02D9D2;color:#222244;padding:3px 11px;font-size:11px;">Beginner</span>
 </div>
 
 <div style="font-size:13px;font-weight:700;margin-top:18px;">What you'll walk away with</div>
@@ -154,11 +137,7 @@
 </div>
 
 <div class="vc screen" style="background:#ffffff;border-radius:10px;overflow:hidden;border:0.5px solid var(--border);">
-<div style="background:#222244;display:flex;align-items:center;gap:7px;padding:10px 16px;">
-<div style="width:26px;height:26px;border-radius:50%;background:#ffffff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#222244;">A</div>
-<span style="color:#02D9D2;font-weight:700;font-size:14px;">vibecoding</span>
-<span style="color:#D4D3D9;font-size:12px;">Building: feedback comment generator</span>
-</div>
+<div class="navbar"></div>
 <div style="padding:20px 22px 22px;">
 <div style="display:flex;align-items:center;">
 <div style="display:flex;align-items:center;gap:7px;"><span style="width:24px;height:24px;border-radius:50%;background:#02D9D2;border:2px solid #222244;display:flex;align-items:center;justify-content:center;"><i class="ti ti-check" aria-hidden="true" style="font-size:13px;color:#222244;"></i></span><span style="font-size:11.5px;font-weight:600;color:#8D8C9E;">Your context</span></div>
@@ -196,10 +175,7 @@
 </div>
 
 <div class="vc screen" style="background:#ffffff;border-radius:10px;overflow:hidden;border:0.5px solid var(--border);">
-<div style="background:#222244;display:flex;align-items:center;gap:7px;padding:10px 16px;">
-<div style="width:26px;height:26px;border-radius:50%;background:#ffffff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#222244;">A</div>
-<span style="color:#02D9D2;font-weight:700;font-size:15px;">vibecoding</span><span style="color:#D4D3D9;font-size:12px;">.aiedu.org</span>
-</div>
+<div class="navbar"></div>
 <div style="padding:26px 22px 22px;text-align:center;">
 <div style="width:56px;height:56px;border-radius:50%;background:#02D9D2;border:2px solid #222244;display:inline-flex;align-items:center;justify-content:center;"><i class="ti ti-award" aria-hidden="true" style="font-size:28px;color:#222244;"></i></div>
 <div style="font-size:22px;font-weight:800;margin-top:12px;">You just built your first AI tool</div>
@@ -233,13 +209,8 @@
 <script>
 (function(){
 var screens=Array.prototype.slice.call(document.querySelectorAll('.screen'));
-var navs=Array.prototype.slice.call(document.querySelectorAll('.pnav'));
 function go(n){
 screens.forEach(function(s,i){s.style.display=i===n?'':'none';});
-navs.forEach(function(b,i){
-if(i===n){b.style.background='#222244';b.style.color='#ffffff';}
-else{b.style.background='#ffffff';b.style.color='#222244';}
-});
 }
 document.querySelectorAll('[data-goto]').forEach(function(el){
 el.addEventListener('click',function(){go(parseInt(el.getAttribute('data-goto'),10));});
