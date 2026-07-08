@@ -179,8 +179,8 @@
 
 <div style="font-size:13px;font-weight:700;margin-top:18px;">Choose your AI</div>
 <div style="display:flex;gap:10px;margin-top:8px;">
-<button class="ai-opt on" data-ai="claude">Claude</button>
-<button class="ai-opt" data-ai="chatgpt">ChatGPT</button>
+<button class="ai-opt on" data-ai="chatgpt">ChatGPT</button>
+<button class="ai-opt" data-ai="claude">Claude</button>
 <button class="ai-opt" data-ai="aistudio">AI Studio</button>
 </div>
 
@@ -308,7 +308,7 @@ inp.addEventListener('input',upd);
 wireOther(selGrade,wrapGrade,inpGrade,document.getElementById('x-grade'));
 wireOther(selSubject,wrapSubject,inpSubject,document.getElementById('x-subject'));
 wireOther(selStyle,wrapStyle,inpStyle,document.getElementById('x-style'));
-var selectedAi='claude';
+var selectedAi='chatgpt';
 var aiOpts=Array.prototype.slice.call(document.querySelectorAll('.ai-opt'));
 var runNote=document.getElementById('run-note');
 function updNote(){
