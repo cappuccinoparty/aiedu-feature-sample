@@ -36,7 +36,7 @@
 <div class="bcard" data-cat="feedback" style="border:2px solid #222244;border-radius:14px;overflow:hidden;background:#ffffff;display:flex;flex-direction:column;">
 <div style="background:#222244;display:flex;align-items:center;justify-content:flex-end;padding:6px 12px;"><span class="pill" style="background:#02D9D2;color:#222244;padding:2px 9px;font-size:11px;">5 min</span></div>
 <div style="padding:12px 13px;display:flex;flex-direction:column;gap:8px;flex:1;">
-<div style="font-weight:700;font-size:13.5px;line-height:1.35;">A feedback generator that drafts comments in your voice</div>
+<div style="font-weight:700;font-size:13.5px;line-height:1.35;">A feedback generator that analyzes work and drafts comments in your voice</div>
 <div style="font-size:11px;color:#8D8C9E;">Replaces: an evening of comment writing</div>
 <div style="display:flex;gap:5px;flex-wrap:wrap;">
 <span class="pill" style="background:#02D9D2;color:#222244;padding:2px 9px;font-size:11px;"><i class="ti ti-star" aria-hidden="true" style="font-size:11px;"></i>aiEDU pick</span>
@@ -151,7 +151,7 @@
 <div style="border:2px solid #222244;border-radius:14px;padding:16px 18px;margin-top:10px;">
 <div style="font-size:13px;line-height:2.15;color:#44445E;">You're helping a <select class="blank" id="sel-grade"><option>Elementary school</option><option>Middle school</option><option selected>High school</option><option>Other (type your own)</option></select><span class="other-wrap" id="wrap-grade"><input id="inp-grade" placeholder="type your own"><button class="other-x" id="x-grade" aria-label="Back to options">&times;</button></span> <select class="blank" id="sel-subject"><option>English</option><option>Math</option><option>Science</option><option>History</option><option>Other (type your own)</option></select><span class="other-wrap" id="wrap-subject"><input id="inp-subject" placeholder="type your own"><button class="other-x" id="x-subject" aria-label="Back to options">&times;</button></span> teacher build a reusable feedback tool. My feedback style is <select class="blank" id="sel-style"><option>encouraging but direct</option><option>warm and detailed</option><option>brief and specific</option><option>Other (type your own)</option></select><span class="other-wrap" id="wrap-style"><input id="inp-style" placeholder="type your own" style="width:130px;"><button class="other-x" id="x-style" aria-label="Back to options">&times;</button></span>.</div>
 <div style="font-size:13px;line-height:2.05;color:#44445E;margin-top:10px;">Before we start, ask me one question at a time to set up how my feedback should work: how long each comment should be, the format I prefer, and what every comment must always include. Then confirm my setup back to me in one line.</div>
-<div style="font-size:13px;line-height:2.05;color:#44445E;margin-top:10px;">After setup, whenever I paste a piece of student work, write a comment using my settings and my voice &mdash; no generic praise.</div>
+<div style="font-size:13px;line-height:2.05;color:#44445E;margin-top:10px;">After setup, After setup, whenever I paste a piece of student work, prompt me for a grading rubric and then once I provide it, analyze the writing based on the rubric and then write a comment using my settings and my voice - no generic praise.</div>
 </div>
 
 <div style="border:1.5px solid #02D9D2;background:#EFFCFB;border-radius:12px;padding:11px 14px;margin-top:12px;display:flex;gap:9px;align-items:flex-start;">
@@ -298,7 +298,7 @@ updNote();
 });
 });
 function buildPrompt(){
-return "You're helping a "+getVal(selGrade,inpGrade,wrapGrade,'school')+" "+getVal(selSubject,inpSubject,wrapSubject,'classroom')+" teacher build a reusable feedback tool. My feedback style is "+getVal(selStyle,inpStyle,wrapStyle,'my own')+". Before we start, ask me one question at a time to set up how my feedback should work: how long each comment should be, the format I prefer, and what every comment must always include. Then confirm my setup back to me in one line. After setup, whenever I paste a piece of student work, write a comment using my settings and my voice - no generic praise.";
+return "You're helping a "+getVal(selGrade,inpGrade,wrapGrade,'school')+" "+getVal(selSubject,inpSubject,wrapSubject,'classroom')+" teacher build a reusable feedback tool. My feedback style is "+getVal(selStyle,inpStyle,wrapStyle,'my own')+". Before we start, ask me one question at a time to set up how my feedback should work: how long each comment should be, the format I prefer, and what every comment must always include. Then confirm my setup back to me in one line. After setup, whenever I paste a piece of student work, prompt me for a grading rubric and then once I provide it, analyze the writing based on the rubric and then write a comment using my settings and my voice - no generic praise.";
 }
 document.getElementById('run-prompt').addEventListener('click',function(){
 var p=buildPrompt();
