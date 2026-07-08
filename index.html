@@ -1,4 +1,4 @@
-<h2 style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Interactive prototype of the 5-minute builds flow with a gallery, preview page with sample tool demo, a build page with customizable dropdowns and an AI picker, and a completion screen</h2>
+<h2 style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Interactive prototype of the 5-minute builds flow where selecting Other on a dropdown swaps it for an inline text input with a visible x button to revert to the dropdown</h2>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 .vc{font-family:'Poppins',ui-sans-serif,sans-serif;color:#222244;}
@@ -6,11 +6,13 @@
 .vc i{line-height:1;}
 .vc button{cursor:pointer;}
 .blank{background:#DFF9F8;border:none;border-bottom:2px solid #02D9D2;font-weight:700;color:#222244;padding:2px 6px;border-radius:6px 6px 0 0;font-family:inherit;font-size:12.5px;}
+.other-wrap{display:inline-flex;align-items:center;gap:3px;background:#DFF9F8;border-bottom:2px solid #02D9D2;border-radius:6px 6px 0 0;padding:2px 5px 2px 6px;}
+.other-wrap input{background:transparent;border:none;outline:none;font-family:inherit;font-weight:700;color:#222244;font-size:12.5px;width:105px;}
+.other-x{background:#222244;color:#ffffff;border:none;border-radius:50%;width:16px;height:16px;font-size:12px;font-weight:700;line-height:1;display:inline-flex;align-items:center;justify-content:center;padding:0;flex-shrink:0;}
 .chip{border:1.5px solid #222244;background:#ffffff;color:#222244;border-radius:999px;padding:5px 13px;font-size:11px;font-weight:600;font-family:inherit;}
 .chip.on{background:#222244;color:#ffffff;font-weight:700;}
 .ai-opt{flex:1;border:2px solid #222244;border-radius:12px;background:#ffffff;color:#222244;font-family:inherit;font-weight:700;font-size:12.5px;padding:10px 0;}
 .ai-opt.on{background:#02D9D2;}
-input.blank{outline:none;}
 </style>
 
 <div style="background:var(--surface-1);border-radius:12px;padding:14px;">
@@ -168,7 +170,7 @@ input.blank{outline:none;}
 
 <div style="font-size:13px;font-weight:700;margin-top:20px;">Your prompt &mdash; the highlighted parts are yours, the rest is already done</div>
 <div style="border:2px solid #222244;border-radius:14px;padding:16px 18px;margin-top:10px;">
-<div style="font-size:13px;line-height:2.05;color:#44445E;">You're helping a <select class="blank" id="sel-grade"><option>Elementary school</option><option>Middle school</option><option selected>High school</option><option>Other (type your own)</option></select> <input class="blank" id="inp-grade" placeholder="type your own" style="width:110px;"> <select class="blank" id="sel-subject"><option>English</option><option>Math</option><option>Science</option><option>History</option><option>Other (type your own)</option></select> <input class="blank" id="inp-subject" placeholder="type your own" style="width:110px;"> teacher build a reusable feedback tool. My feedback style is <select class="blank" id="sel-style"><option>encouraging but direct</option><option>warm and detailed</option><option>brief and specific</option><option>Other (type your own)</option></select> <input class="blank" id="inp-style" placeholder="type your own" style="width:130px;">.</div>
+<div style="font-size:13px;line-height:2.15;color:#44445E;">You're helping a <select class="blank" id="sel-grade"><option>Elementary school</option><option>Middle school</option><option selected>High school</option><option>Other (type your own)</option></select><span class="other-wrap" id="wrap-grade"><input id="inp-grade" placeholder="type your own"><button class="other-x" id="x-grade" aria-label="Back to options">&times;</button></span> <select class="blank" id="sel-subject"><option>English</option><option>Math</option><option>Science</option><option>History</option><option>Other (type your own)</option></select><span class="other-wrap" id="wrap-subject"><input id="inp-subject" placeholder="type your own"><button class="other-x" id="x-subject" aria-label="Back to options">&times;</button></span> teacher build a reusable feedback tool. My feedback style is <select class="blank" id="sel-style"><option>encouraging but direct</option><option>warm and detailed</option><option>brief and specific</option><option>Other (type your own)</option></select><span class="other-wrap" id="wrap-style"><input id="inp-style" placeholder="type your own" style="width:130px;"><button class="other-x" id="x-style" aria-label="Back to options">&times;</button></span>.</div>
 <div style="font-size:13px;line-height:2.05;color:#44445E;margin-top:10px;">Before we start, ask me one question at a time to set up how my feedback should work: how long each comment should be, the format I prefer, and what every comment must always include. Then confirm my setup back to me in one line.</div>
 <div style="font-size:13px;line-height:2.05;color:#44445E;margin-top:10px;">After setup, whenever I paste a piece of student work, write a comment using my settings and my voice &mdash; no generic praise.</div>
 </div>
@@ -279,29 +281,43 @@ out.style.display='';
 runBtn.innerHTML='<i class="ti ti-refresh" aria-hidden="true" style="font-size:12px;"></i> Run again';
 },800);
 });
-function wireOther(sel,inp){
-inp.style.display='none';
-sel.addEventListener('change',function(){
-inp.style.display=sel.value.indexOf('Other')===0?'':'none';
-if(sel.value.indexOf('Other')===0){inp.focus();}
-});
-}
-var selGrade=document.getElementById('sel-grade'),inpGrade=document.getElementById('inp-grade');
-var selSubject=document.getElementById('sel-subject'),inpSubject=document.getElementById('inp-subject');
-var selStyle=document.getElementById('sel-style'),inpStyle=document.getElementById('inp-style');
-wireOther(selGrade,inpGrade);
-wireOther(selSubject,inpSubject);
-wireOther(selStyle,inpStyle);
-function getVal(sel,inp,fallback){
-if(sel.value.indexOf('Other')===0){return inp.value.trim()||fallback;}
+var selGrade=document.getElementById('sel-grade'),inpGrade=document.getElementById('inp-grade'),wrapGrade=document.getElementById('wrap-grade');
+var selSubject=document.getElementById('sel-subject'),inpSubject=document.getElementById('inp-subject'),wrapSubject=document.getElementById('wrap-subject');
+var selStyle=document.getElementById('sel-style'),inpStyle=document.getElementById('inp-style'),wrapStyle=document.getElementById('wrap-style');
+function isOther(wrap){return wrap.style.display!=='none';}
+function getVal(sel,inp,wrap,fallback){
+if(isOther(wrap)){return inp.value.trim()||fallback;}
 return sel.value;
 }
 var sub=document.getElementById('done-sub');
 function upd(){
-sub.textContent='A working '+getVal(selGrade,inpGrade,'')+' '+getVal(selSubject,inpSubject,'')+' feedback generator, in your voice, ready for Monday.';
+sub.textContent='A working '+getVal(selGrade,inpGrade,wrapGrade,'')+' '+getVal(selSubject,inpSubject,wrapSubject,'')+' feedback generator, in your voice, ready for Monday.';
 }
-[selGrade,selSubject,selStyle].forEach(function(s){s.addEventListener('change',upd);});
-[inpGrade,inpSubject,inpStyle].forEach(function(i){i.addEventListener('input',upd);});
+function wireOther(sel,wrap,inp,xbtn){
+wrap.style.display='none';
+var prev=sel.value;
+sel.addEventListener('change',function(){
+if(sel.value.indexOf('Other')===0){
+sel.style.display='none';
+wrap.style.display='inline-flex';
+inp.focus();
+}else{
+prev=sel.value;
+}
+upd();
+});
+xbtn.addEventListener('click',function(){
+wrap.style.display='none';
+sel.style.display='';
+sel.value=prev;
+inp.value='';
+upd();
+});
+inp.addEventListener('input',upd);
+}
+wireOther(selGrade,wrapGrade,inpGrade,document.getElementById('x-grade'));
+wireOther(selSubject,wrapSubject,inpSubject,document.getElementById('x-subject'));
+wireOther(selStyle,wrapStyle,inpStyle,document.getElementById('x-style'));
 var selectedAi='claude';
 var aiOpts=Array.prototype.slice.call(document.querySelectorAll('.ai-opt'));
 var runNote=document.getElementById('run-note');
@@ -319,7 +335,7 @@ updNote();
 });
 });
 function buildPrompt(){
-return "You're helping a "+getVal(selGrade,inpGrade,'school')+" "+getVal(selSubject,inpSubject,'classroom')+" teacher build a reusable feedback tool. My feedback style is "+getVal(selStyle,inpStyle,'my own')+". Before we start, ask me one question at a time to set up how my feedback should work: how long each comment should be, the format I prefer, and what every comment must always include. Then confirm my setup back to me in one line. After setup, whenever I paste a piece of student work, write a comment using my settings and my voice - no generic praise.";
+return "You're helping a "+getVal(selGrade,inpGrade,wrapGrade,'school')+" "+getVal(selSubject,inpSubject,wrapSubject,'classroom')+" teacher build a reusable feedback tool. My feedback style is "+getVal(selStyle,inpStyle,wrapStyle,'my own')+". Before we start, ask me one question at a time to set up how my feedback should work: how long each comment should be, the format I prefer, and what every comment must always include. Then confirm my setup back to me in one line. After setup, whenever I paste a piece of student work, write a comment using my settings and my voice - no generic praise.";
 }
 document.getElementById('run-prompt').addEventListener('click',function(){
 var p=buildPrompt();
